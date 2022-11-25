@@ -24,7 +24,7 @@ model Post {
   updated_at DateTime @updatedAt
   title      String
   level      String
-  wage       Float?
+  wage       String
   content    String?
   local      String?
   published  Boolean  @default(false)
