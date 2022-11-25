@@ -12,7 +12,10 @@ CREATE TABLE "Post" (
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" DATETIME NOT NULL,
     "title" TEXT NOT NULL,
+    "level" TEXT NOT NULL,
+    "wage" REAL,
     "content" TEXT,
+    "local" TEXT,
     "published" BOOLEAN NOT NULL DEFAULT false,
     "authorId" INTEGER,
     CONSTRAINT "Post_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE SET NULL ON UPDATE CASCADE

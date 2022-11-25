@@ -4,7 +4,7 @@ import {Request, Response} from 'express';
 
 export class PostController {
   async createPost(req: Request, res: Response){
-    const { title, content } = req.body
+    const { title, content, wage, level, local } = req.body
     const { id } = req.params
 
     try {
@@ -15,7 +15,10 @@ export class PostController {
       const post = await prisma.post.create({
         data: {
           title,
+          level,
+          wage,
           content,
+          local,
           authorId: user.id,
         },
         include: {
@@ -42,7 +45,7 @@ export class PostController {
   async updatePost(req: Request, res: Response){
     const { id } = req.params
 
-    const {title, content} = req.body
+    const {title, content, level, wage,local} = req.body
 
     try {
       const post = await prisma.post.findUnique({where: {id: Number(id)}})
@@ -51,7 +54,7 @@ export class PostController {
 
       await prisma.post.update({
         where: {id: Number(id)},
-        data: {title,content}
+        data: {title,level,wage,content,local}
       });
 
       return res.json({message: "post updated successfully"})
